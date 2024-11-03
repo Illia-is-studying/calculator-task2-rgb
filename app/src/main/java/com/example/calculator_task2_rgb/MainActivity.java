@@ -1,11 +1,14 @@
 package com.example.calculator_task2_rgb;
 
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,6 +25,28 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+//        LinearLayout linearLayout = task2();
+//
+//        setContentView(linearLayout);
+        setContentView(R.layout.activity_rgb);
+    }
+
+    public void onCheckboxClicked(View view) {
+        CheckBox checkBoxRed = findViewById(R.id.checkbox_rgb_red);
+        CheckBox checkBoxGreen = findViewById(R.id.checkbox_rgb_green);
+        CheckBox checkBoxBlue = findViewById(R.id.checkbox_rgb_blue);
+
+        ConstraintLayout constraintLayout = findViewById(R.id.constraint_parent);
+
+        int red = checkBoxRed.isChecked() ? 255 : 0;
+        int green = checkBoxGreen.isChecked() ? 255 : 0;
+        int blue = checkBoxBlue.isChecked() ? 255 : 0;;
+
+        constraintLayout.setBackgroundColor(Color.rgb(red, green, blue));
+    }
+
+    private LinearLayout task2() {
         LinearLayout linearLayout = new LinearLayout(this);
 
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
@@ -48,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         linearLayout.addView(getLinearLayout(ViewGroup.generateViewId(), ViewGroup.generateViewId(),
                 buttonIds2, "#ffabab"));
 
-        setContentView(linearLayout);
+        return linearLayout;
     }
 
     private LinearLayout getLinearLayout(int id, int gridId, int[] buttonIds, String background) {
